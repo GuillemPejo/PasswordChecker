@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PasswordChecker">
-        <activity android:name=".MainActivity">
+        <activity android:name=".CheckerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PasswordChecker</string>
+    <string name="psw">Write a password</string>
+    <string name="test">test</string>
+    <string name="lowercase_letters">Lower case letters</string>
+    <string name="uppercase_letters">Upper Case Letters</string>
+    <string name="digits">Digits</string>
+    <string name="special_characters">Special Characters</string>
 </resources>

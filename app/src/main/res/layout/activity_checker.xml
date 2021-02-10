@@ -15,20 +15,22 @@
         android:background="@android:color/transparent"
         android:ems="10"
         android:hint="@string/psw"
+        android:paddingRight="30dp"
         android:inputType="textPassword"
         app:layout_constraintEnd_toStartOf="@+id/strength_level_txt"
         app:layout_constraintHorizontal_weight="3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/hide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/password_input"
         app:layout_constraintEnd_toEndOf="@+id/password_input"
         app:layout_constraintTop_toTopOf="@+id/password_input"
-        app:srcCompat="@drawable/check_ic"
+        app:srcCompat="@drawable/ic_invisible"
         app:tint="@color/grey" />
 
     <TextView
@@ -150,4 +152,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/specialChar_img"
         app:layout_constraintStart_toEndOf="@+id/specialChar_img"
         app:layout_constraintTop_toTopOf="@+id/specialChar_img" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,4 +6,5 @@
     <string name="uppercase_letters">Upper Case Letters</string>
     <string name="digits">Digits</string>
     <string name="special_characters">Special Characters</string>
+    <string name="characters_containing">" characters containing"</string>
 </resources>

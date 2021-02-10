@@ -52,6 +52,21 @@ class CheckerActivity : AppCompatActivity() {
             displayPasswordSuggestions(value, binding.specialCharImg, binding.specialCharTxt)
         })
 
+        passwordStrengthCalculator.charCount.observe(this, Observer { value ->
+                binding.charactersContaining.text = "$value" + getString(R.string.characters_containing)
+
+        })
+
+        passwordStrengthCalculator.crackingTime.observe(this, Observer { value ->
+
+            binding.crackingTimeEstimate.text = "$value"
+
+
+        })
+
+
+
+
 
         binding.hide.setOnClickListener {
 

@@ -15,8 +15,8 @@
         android:background="@android:color/transparent"
         android:ems="10"
         android:hint="@string/psw"
-        android:paddingRight="30dp"
         android:inputType="textPassword"
+        android:paddingRight="30dp"
         app:layout_constraintEnd_toStartOf="@+id/strength_level_txt"
         app:layout_constraintHorizontal_weight="3"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,100 +57,160 @@
         app:layout_constraintStart_toStartOf="@+id/password_input"
         app:layout_constraintTop_toBottomOf="@+id/password_input" />
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/strength_level_indicator"
+        tools:layout_editor_absoluteX="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+
+            <ImageView
+                    android:id="@+id/lowerCase_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/check_ic"
+                    app:tint="@color/grey" />
+
+                <TextView
+                    android:id="@+id/lowerCase_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/lowercase_letters"
+                    android:textColor="@color/grey" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+
+            <ImageView
+                    android:id="@+id/upperCase_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/check_ic"
+                    app:tint="@color/grey" />
+
+                <TextView
+                    android:id="@+id/upperCase_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/uppercase_letters"
+                    android:textColor="@color/grey" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+            <ImageView
+                    android:id="@+id/digit_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/check_ic"
+                    app:tint="@color/grey" />
+
+
+                <TextView
+                    android:id="@+id/digit_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/digits"
+                    android:textColor="@color/grey" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+
+                <ImageView
+                    android:id="@+id/specialChar_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/check_ic"
+                    app:tint="@color/grey" />
+
+                <TextView
+                    android:id="@+id/specialChar_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/special_characters"
+                    android:textColor="@color/grey" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/characters_containing"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:text="0 characters containing"
+        android:textColor="@color/grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/crackingTimeEstimate"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:text="x hours"
+        android:textColor="@color/grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/characters_containing" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="55dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:enabled="false"
         android:text="@string/test"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/specialChar_txt" />
+        app:layout_constraintTop_toBottomOf="@+id/crackingTimeEstimate" />
 
-    <ImageView
-        android:id="@+id/lowerCase_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@+id/strength_level_indicator"
-        app:layout_constraintTop_toBottomOf="@+id/strength_level_indicator"
-        app:srcCompat="@drawable/check_ic"
-        app:tint="@color/grey" />
-
-    <TextView
-        android:id="@+id/lowerCase_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/lowercase_letters"
-        android:textColor="@color/grey"
-        app:layout_constraintBottom_toBottomOf="@+id/lowerCase_img"
-        app:layout_constraintStart_toEndOf="@+id/lowerCase_img"
-        app:layout_constraintTop_toTopOf="@+id/lowerCase_img" />
-
-    <ImageView
-        android:id="@+id/upperCase_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@+id/lowerCase_img"
-        app:layout_constraintTop_toBottomOf="@+id/lowerCase_img"
-        app:srcCompat="@drawable/check_ic"
-        app:tint="@color/grey" />
-
-    <TextView
-        android:id="@+id/upperCase_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/uppercase_letters"
-        android:textColor="@color/grey"
-        app:layout_constraintBottom_toBottomOf="@+id/upperCase_img"
-        app:layout_constraintStart_toEndOf="@+id/upperCase_img"
-        app:layout_constraintTop_toTopOf="@+id/upperCase_img" />
-
-    <ImageView
-        android:id="@+id/digit_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@+id/upperCase_img"
-        app:layout_constraintTop_toBottomOf="@+id/upperCase_img"
-        app:srcCompat="@drawable/check_ic"
-        app:tint="@color/grey" />
-
-    <TextView
-        android:id="@+id/digit_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/digits"
-        android:textColor="@color/grey"
-        app:layout_constraintBottom_toBottomOf="@+id/digit_img"
-        app:layout_constraintStart_toEndOf="@+id/digit_img"
-        app:layout_constraintTop_toTopOf="@+id/digit_img" />
-
-    <ImageView
-        android:id="@+id/specialChar_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@+id/digit_img"
-        app:layout_constraintTop_toBottomOf="@+id/digit_img"
-        app:srcCompat="@drawable/check_ic"
-        app:tint="@color/grey" />
-
-    <TextView
-        android:id="@+id/specialChar_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/special_characters"
-        android:textColor="@color/grey"
-        app:layout_constraintBottom_toBottomOf="@+id/specialChar_img"
-        app:layout_constraintStart_toEndOf="@+id/specialChar_img"
-        app:layout_constraintTop_toTopOf="@+id/specialChar_img" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

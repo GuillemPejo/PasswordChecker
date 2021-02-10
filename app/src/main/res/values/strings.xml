@@ -7,4 +7,16 @@
     <string name="digits">Digits</string>
     <string name="special_characters">Special Characters</string>
     <string name="characters_containing">" characters containing"</string>
+    <string name="instantanly">Instantanly</string>
+    <string name="milliseconds">Milliseconds</string>
+    <string name="seconds">Seconds</string>
+    <string name="minutes">Minutes</string>
+    <string name="hours">Hours</string>
+    <string name="days">Days</string>
+    <string name="weeks">Weeks</string>
+    <string name="months">Months</string>
+    <string name="years">Years</string>
+    <string name="centuries">Centuries</string>
+    <string name="millennium">Millennium</string>
+    <string name="lotoftime">a lot of time</string>
 </resources>

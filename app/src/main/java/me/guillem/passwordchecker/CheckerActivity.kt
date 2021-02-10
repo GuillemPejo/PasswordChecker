@@ -1,20 +1,17 @@
 package me.guillem.passwordchecker
 
-import android.R.attr.button
-import android.graphics.Color
 import android.graphics.Color.*
 import android.os.Bundle
 import android.text.InputType.*
 import android.util.Log
-import android.view.MotionEvent
-import android.view.View
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import me.guillem.passwordchecker.databinding.ActivityCheckerBinding
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 
 class CheckerActivity : AppCompatActivity() {
@@ -53,13 +50,15 @@ class CheckerActivity : AppCompatActivity() {
         })
 
         passwordStrengthCalculator.charCount.observe(this, Observer { value ->
-                binding.charactersContaining.text = "$value" + getString(R.string.characters_containing)
+            binding.charactersContaining.text = "$value" + getString(R.string.characters_containing)
 
         })
 
         passwordStrengthCalculator.crackingTime.observe(this, Observer { value ->
+            binding.crackingTimeEstimate.text =  value
 
-            binding.crackingTimeEstimate.text = "$value"
+
+
 
 
         })

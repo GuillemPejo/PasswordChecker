@@ -8,10 +8,7 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.regex.Matcher
 import java.util.regex.Pattern
-import kotlin.math.pow
-import kotlin.math.roundToInt
-import kotlin.math.roundToLong
-import kotlin.math.sign
+import kotlin.math.*
 
 /**
  ** Created by Guillem on 10/02/21.
@@ -67,14 +64,10 @@ class PasswordStrengthCalculator : TextWatcher {
     }
 
     private fun calculateCrackingTime(char: CharSequence?): String {
-        var lwCounter: Int = 0;
-        var upCounter: Int = 0;
-        var dgCounter: Int = 0;
-        var scCounter: Int = 0;
-
-        val n = 0;
-        Log.e("Aqui", 26.toDouble().toString())
-        Log.e("Aqui", 26.toDouble().pow(lwCounter).toString())
+        var lwCounter = 0;
+        var upCounter = 0;
+        var dgCounter = 0;
+        var scCounter = 0;
 
         val password = char.toString()
 
@@ -95,8 +88,12 @@ class PasswordStrengthCalculator : TextWatcher {
 
             }
 
-
         }
+
+        return calculateProbabilities(lwCounter, upCounter, dgCounter, scCounter)
+    }
+
+    private fun calculateProbabilities(lwCounter: Int, upCounter: Int, dgCounter: Int, scCounter: Int): String {
 
         //Calculate probabilities
 
@@ -105,10 +102,10 @@ class PasswordStrengthCalculator : TextWatcher {
         val total_digits = Constants.NUM_DIGITS.toDouble().pow(dgCounter).toInt()
         val total_symbols = Constants.NUM_SYMBOLS.toDouble().pow(scCounter).toInt()
 
+        //Reduce Keyspace Search by Law of Averages
         val numMulti = ((total_lower * total_upper * total_digits * total_symbols) / 2)
 
         val hours = (numMulti / Constants.COMPUTER_CALCULATION_HOUR)
-
         val millennium =  hours * Constants.MILLENNIUM_TO_HOUR
         val century =  hours * Constants.CENTURY_TO_HOUR
         val years =  hours * Constants.YEAR_TO_HOUR
@@ -119,46 +116,19 @@ class PasswordStrengthCalculator : TextWatcher {
         val seconds = hours * Constants.SECOND_TO_HOUR
         val milli = hours * Constants.MILISECOND_TO_HOUR
 
-/*
-        if (minutes.roundToInt() > 0.001)
-
-            Log.e("SI","Minutes: ${minutes.roundToInt()}")
-
-        if (seconds.roundToInt() > 0.001)
-            if (milli.roundToInt() > 0.001){
-                Log.e("SI","Milliseconds: ${milli}")
-            }else{
-                Log.e("SI","INSTANTANI")
-            }
-            Log.e("SI","Seconds: ${seconds.roundToInt()}")
-*/
-
         when{
-            hours<Constants.MILISECOND_TO_HOUR-> Log.e("SI","INSTANTANI")
-            hours<Constants.SECOND_TO_HOUR && hours>Constants.MILISECOND_TO_HOUR-> Log.e("SI","Milisegons: $milli")
-            hours<Constants.MINUTE_TO_HOUR && hours>Constants.SECOND_TO_HOUR-> Log.e("SI","Segons: $seconds")
-            hours<Constants.HOUR_TO_HOUR && hours>Constants.MINUTE_TO_HOUR-> Log.e("SI","Minuts: $minutes")
-            hours<Constants.DAY_TO_HOUR && hours>Constants.HOUR_TO_HOUR-> Log.e("SI","Hores: $hours")
-            hours<Constants.WEEK_TO_HOUR && hours>Constants.DAY_TO_HOUR-> Log.e("SI","Dies: $days")
-            hours<Constants.MONTH_TO_HOUR && hours>Constants.WEEK_TO_HOUR-> Log.e("SI","Setmanes: $weeks")
-            hours<Constants.YEAR_TO_HOUR && hours>Constants.MONTH_TO_HOUR-> Log.e("SI","Mesos: $months")
-            hours<Constants.CENTURY_TO_HOUR && hours>Constants.YEAR_TO_HOUR-> Log.e("SI","Anys: $years")
-            hours<Constants.MILLENNIUM_TO_HOUR && hours>Constants.CENTURY_TO_HOUR-> Log.e("SI","Segles: $years")
-            hours>Constants.MILLENNIUM_TO_HOUR-> Log.e("SI","Infinite time")
-
+            hours<2.77777778e-7-> return "Instantanly"
+            hours<0.00027777777 && hours>=2.77777778e-7-> return "${milli} miliseconds "
+            hours<0.01666666666 && hours>=0.00027777777-> return "${seconds} seconds "
+            hours<1 && hours>=0.01666666666->return "${minutes} minutes "
+            hours<24 && hours>=1 -> return "${hours} hours "
+            hours<168 && hours>=24-> return "${days} days "
+            hours<5113.5 && hours>=168-> return "${weeks} weeks "
+            hours<8766 && hours>= 5113.5 -> return "${months} months "
+            hours<87660 && hours>=8766-> return "${years} years "
+            hours<8766000&& hours>=87660-> return "${century} century "
+            else -> return "A lot ofk time"
         }
-
-
-        //return "num Multi: $numMulti, n1: $num1,  n2: $num2, n3: $num3, n4: $num4,"
-
-         return "Hours: $hours"
-
-
-
-
-        //result in minutes $resultinminutes, result in seconds $resultinseconds,"
-
-
     }
 
     private fun calculateStrength(password: CharSequence) {

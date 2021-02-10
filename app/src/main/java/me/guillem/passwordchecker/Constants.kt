@@ -20,17 +20,16 @@ object Constants {
     //Efficient computer calculation per hour (2*2³³)
     const val COMPUTER_CALCULATION_HOUR = 17179869184
 
-    const val MILISECOND_TO_HOUR = 1E-07
-    const val SECOND_TO_HOUR = 1E-03
-    const val MINUTE_TO_HOUR = 1E-01
+    const val MILISECOND_TO_HOUR = 3.6E+06
+    const val SECOND_TO_HOUR = 3.6E+3
+    const val MINUTE_TO_HOUR = 60
     const val HOUR_TO_HOUR = 1
-    const val DAY_TO_HOUR = 24
-    const val WEEK_TO_HOUR = 168
-    const val MONTH_TO_HOUR = 5113.5
-    const val YEAR_TO_HOUR = 1867705.875
-    const val CENTURY_TO_HOUR = 18677058.75
-    const val MILLENNIUM_TO_HOUR = 1867705875000
-
+    const val DAY_TO_HOUR = 0.0416666667
+    const val WEEK_TO_HOUR = 0.0059523808
+    const val MONTH_TO_HOUR = 0.0013689254
+    const val YEAR_TO_HOUR = 0.00011407711
+    const val CENTURY_TO_HOUR = 0.00001140771
+    const val MILLENNIUM_TO_HOUR = 1.14077117e-7
 
 
 }

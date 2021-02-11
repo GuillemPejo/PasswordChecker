@@ -49,12 +49,22 @@ class CheckerActivity : AppCompatActivity() {
             displayPasswordSuggestions(value, binding.specialCharImg, binding.specialCharTxt)
         })
 
-        passwordStrengthCalculator.charCount.observe(this, Observer { value ->
-            binding.charactersContaining.text = "$value" + getString(R.string.characters_containing)
+        passwordStrengthCalculator.charCount.observe(this, Observer { size ->
+            binding.charactersContaining.text = "$size" + getString(R.string.characters_containing)
 
         })
-        passwordStrengthCalculator.crackingTime.observe(this, Observer { value ->
-            binding.crackingTimeEstimate.text =  value
+        passwordStrengthCalculator.crackingTime.observe(this, Observer { time ->
+            binding.crackingTimeEstimate.text =  time
+        })
+
+        passwordStrengthCalculator.strengthLevel.observe(this, Observer { strengthLevel ->
+            when (strengthLevel){
+                StrengthModes.NONE -> showReview("")
+                StrengthModes.WEAK -> showReview(getString(R.string.weak))
+                StrengthModes.MEDIUM -> showReview(getString(R.string.medium))
+                StrengthModes.STRONG -> showReview(getString(R.string.strong))
+                StrengthModes.BULLETPROOF -> showReview(getString(R.string.bulletprof))
+            }
         })
 
         binding.hide.setOnClickListener {
@@ -79,6 +89,11 @@ class CheckerActivity : AppCompatActivity() {
 
     }
 
+    private fun showReview(string: String) {
+
+        binding.review.text =  string
+    }
+
     private fun displayPasswordSuggestions(value: Int, imageView: ImageView, textView: TextView) {
         if (value == 1) {
             imageView.setColorFilter(ContextCompat.getColor(this, R.color.bulletproof))
@@ -92,7 +107,9 @@ class CheckerActivity : AppCompatActivity() {
     private fun displayStrengthLevel(strengthMode: StrengthModes) {
         binding.button.isEnabled = strengthMode == StrengthModes.BULLETPROOF
 
-        binding.strengthLevelTxt.text = strengthMode.name
+        if (strengthMode.name == "NONE") binding.strengthLevelTxt.text = ""
+        else binding.strengthLevelTxt.text = strengthMode.name
+
         binding.strengthLevelTxt.setTextColor(ContextCompat.getColor(this, color))
         binding.strengthLevelIndicator.setBackgroundColor(ContextCompat.getColor(this, color))
     }

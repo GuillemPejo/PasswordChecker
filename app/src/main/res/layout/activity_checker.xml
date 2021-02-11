@@ -11,7 +11,7 @@
         android:id="@+id/password_input"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
         android:ems="10"
         android:hint="@string/psw"
@@ -79,7 +79,7 @@
                 android:padding="10dp">
 
 
-            <ImageView
+                <ImageView
                     android:id="@+id/lowerCase_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
                 android:padding="10dp">
 
 
-            <ImageView
+                <ImageView
                     android:id="@+id/upperCase_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                 android:orientation="horizontal"
                 android:padding="10dp">
 
-            <ImageView
+                <ImageView
                     android:id="@+id/digit_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -184,33 +184,61 @@
     <TextView
         android:id="@+id/characters_containing"
         android:layout_width="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
-        android:text="0 characters containing"
+        android:layout_marginTop="10dp"
+        android:text="@string/_0_characters_containing"
         android:textColor="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <TextView
+        android:id="@+id/txv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/time_to_crack_your_password"
+        android:textColor="@color/grey"
+        app:layout_constraintBottom_toBottomOf="@+id/review"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/review" />
+
+    <TextView
         android:id="@+id/crackingTimeEstimate"
         android:layout_width="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
         android:text=""
         android:textColor="@color/grey"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txv"
+        app:layout_constraintStart_toStartOf="@+id/txv"
+        app:layout_constraintTop_toBottomOf="@+id/txv" />
+
+    <TextView
+        android:id="@+id/review"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txv"
         app:layout_constraintTop_toBottomOf="@+id/characters_containing" />
+
 
     <Button
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="55dp"
-        android:layout_marginTop="10dp"
         android:enabled="false"
+        android:layout_marginTop="20dp"
         android:text="@string/test"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/crackingTimeEstimate" />
+        app:layout_constraintTop_toBottomOf="@+id/review" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

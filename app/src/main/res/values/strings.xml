@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PasswordChecker</string>
     <string name="psw">Write a password</string>
-    <string name="test">test</string>
+    <string name="test">ENTER</string>
     <string name="lowercase_letters">Lower case letters</string>
     <string name="uppercase_letters">Upper Case Letters</string>
     <string name="digits">Digits</string>
@@ -19,4 +19,10 @@
     <string name="centuries">Centuries</string>
     <string name="millennium">Millennium</string>
     <string name="lotoftime">a lot of time</string>
+    <string name="_0_characters_containing">0 characters containing</string>
+    <string name="time_to_crack_your_password">Time to crack your password</string>
+    <string name="weak">"Oh dear, using that password is like leaving your front door wide open. "</string>
+    <string name="medium">"Hmm, using that password is like locking your front door, but leaving the key under the mat. "</string>
+    <string name="strong">"Good, using that password is like locking your front door and keeping the key in a safety deposit box. "</string>
+    <string name="bulletprof">"Fantastic, using that password makes you as secure as Fort Knox. "</string>
 </resources>

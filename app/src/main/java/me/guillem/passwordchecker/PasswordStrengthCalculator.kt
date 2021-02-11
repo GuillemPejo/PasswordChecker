@@ -2,6 +2,7 @@ package me.guillem.passwordchecker
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import java.text.DecimalFormat
 import java.util.regex.Matcher
@@ -85,14 +86,15 @@ class PasswordStrengthCalculator : TextWatcher {
 
         }
 
-        return calculateProbabilities(lwCounter, upCounter, dgCounter, scCounter)
+        return calculateProbabilities(lwCounter, upCounter, dgCounter, scCounter, char)
     }
 
     private fun calculateProbabilities(
         lwCounter: Int,
         upCounter: Int,
         dgCounter: Int,
-        scCounter: Int
+        scCounter: Int,
+        char_size: CharSequence?,
     ): String {
 
         //Calculate probabilities
@@ -117,8 +119,11 @@ class PasswordStrengthCalculator : TextWatcher {
         val seconds = result * Constants.SECOND_TO_HOUR
         val milli = result * Constants.MILISECOND_TO_HOUR
 
+        //Log.e("result","VALUE: $result")
 
         return when {
+
+            char_size?.isEmpty() == true -> ""
             result < 2.77777778e-7 -> "Instantanly"
             result < 0.00027777777 && result >= 2.77777778e-7 -> "${withTwoDecimals(milli)} miliseconds "
             result < 0.01666666666 && result >= 0.00027777777 -> "${withTwoDecimals(seconds)} seconds "
@@ -129,7 +134,8 @@ class PasswordStrengthCalculator : TextWatcher {
             result < 8766 && result >= 5113.5 -> "${withTwoDecimals(months)} months "
             result < 87660 && result >= 8766 -> "${withTwoDecimals(years)} years "
             result < 8766000 && result >= 87660 -> "${withTwoDecimals(century)} centuries "
-            else -> "A lot of time"
+            result >= 8766000 -> "A lot of time"
+            else -> ""
         }
     }
 
@@ -140,7 +146,8 @@ class PasswordStrengthCalculator : TextWatcher {
     }
 
     private fun calculateStrength(password: CharSequence) {
-        if (password.length in 0..7) {
+        if (password.isEmpty()) strengthLevel.value = StrengthModes.NONE
+        if (password.length in 1..7) {
             strengthColor.value = R.color.weak
             strengthLevel.value = StrengthModes.WEAK
         } else if (password.length in 8..10) {

@@ -53,19 +53,9 @@ class CheckerActivity : AppCompatActivity() {
             binding.charactersContaining.text = "$value" + getString(R.string.characters_containing)
 
         })
-
         passwordStrengthCalculator.crackingTime.observe(this, Observer { value ->
             binding.crackingTimeEstimate.text =  value
-
-
-
-
-
         })
-
-
-
-
 
         binding.hide.setOnClickListener {
 

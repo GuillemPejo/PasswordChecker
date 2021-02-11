@@ -2,9 +2,7 @@ package me.guillem.passwordchecker
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -27,12 +25,9 @@ class PasswordStrengthCalculator : TextWatcher {
 
 
     override fun afterTextChanged(p0: Editable?) {
-
     }
 
-
     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
 
     override fun onTextChanged(char: CharSequence?, p1: Int, p2: Int, p3: Int) {
         char?.let {
@@ -93,7 +88,12 @@ class PasswordStrengthCalculator : TextWatcher {
         return calculateProbabilities(lwCounter, upCounter, dgCounter, scCounter)
     }
 
-    private fun calculateProbabilities(lwCounter: Int, upCounter: Int, dgCounter: Int, scCounter: Int): String {
+    private fun calculateProbabilities(
+        lwCounter: Int,
+        upCounter: Int,
+        dgCounter: Int,
+        scCounter: Int
+    ): String {
 
         //Calculate probabilities
 
@@ -105,30 +105,38 @@ class PasswordStrengthCalculator : TextWatcher {
         //Reduce Keyspace Search by Law of Averages
         val numMulti = ((total_lower * total_upper * total_digits * total_symbols) / 2)
 
-        val hours = (numMulti / Constants.COMPUTER_CALCULATION_HOUR)
-        val millennium =  hours * Constants.MILLENNIUM_TO_HOUR
-        val century =  hours * Constants.CENTURY_TO_HOUR
-        val years =  hours * Constants.YEAR_TO_HOUR
-        val months = hours * Constants.MONTH_TO_HOUR
-        val weeks =  hours * Constants.WEEK_TO_HOUR
-        val days =  hours * Constants.DAY_TO_HOUR
-        val minutes = hours * Constants.MINUTE_TO_HOUR
-        val seconds = hours * Constants.SECOND_TO_HOUR
-        val milli = hours * Constants.MILISECOND_TO_HOUR
+        val result = (numMulti / Constants.COMPUTER_CALCULATION_HOUR)
+        val millennium = result * Constants.MILLENNIUM_TO_HOUR
+        val century = result * Constants.CENTURY_TO_HOUR
+        val years = result * Constants.YEAR_TO_HOUR
+        val months = result * Constants.MONTH_TO_HOUR
+        val weeks = result * Constants.WEEK_TO_HOUR
+        val days = result * Constants.DAY_TO_HOUR
+        val hours = result * Constants.HOUR_TO_HOUR
+        val minutes = result * Constants.MINUTE_TO_HOUR
+        val seconds = result * Constants.SECOND_TO_HOUR
+        val milli = result * Constants.MILISECOND_TO_HOUR
 
-        when{
-            hours<2.77777778e-7-> return "Instantanly"
-            hours<0.00027777777 && hours>=2.77777778e-7-> return "${milli} miliseconds "
-            hours<0.01666666666 && hours>=0.00027777777-> return "${seconds} seconds "
-            hours<1 && hours>=0.01666666666->return "${minutes} minutes "
-            hours<24 && hours>=1 -> return "${hours} hours "
-            hours<168 && hours>=24-> return "${days} days "
-            hours<5113.5 && hours>=168-> return "${weeks} weeks "
-            hours<8766 && hours>= 5113.5 -> return "${months} months "
-            hours<87660 && hours>=8766-> return "${years} years "
-            hours<8766000&& hours>=87660-> return "${century} century "
-            else -> return "A lot ofk time"
+
+        return when {
+            result < 2.77777778e-7 -> "Instantanly"
+            result < 0.00027777777 && result >= 2.77777778e-7 -> "${withTwoDecimals(milli)} miliseconds "
+            result < 0.01666666666 && result >= 0.00027777777 -> "${withTwoDecimals(seconds)} seconds "
+            result < 1 && result >= 0.01666666666 -> "${withTwoDecimals(minutes)} minutes "
+            result < 24 && result >= 1 -> "${withTwoDecimals(hours)} hours "
+            result < 168 && result >= 24 -> "${withTwoDecimals(days)} days "
+            result < 5113.5 && result >= 168 -> "${withTwoDecimals(weeks)} weeks "
+            result < 8766 && result >= 5113.5 -> "${withTwoDecimals(months)} months "
+            result < 87660 && result >= 8766 -> "${withTwoDecimals(years)} years "
+            result < 8766000 && result >= 87660 -> "${withTwoDecimals(century)} centuries "
+            else -> "A lot of time"
         }
+    }
+
+
+    private fun withTwoDecimals(number: Double):String{
+        val df = DecimalFormat("#.##")
+        return df.format(number)
     }
 
     private fun calculateStrength(password: CharSequence) {
